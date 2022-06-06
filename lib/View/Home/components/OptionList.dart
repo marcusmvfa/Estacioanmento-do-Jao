@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:park_do_jao/Home/components/OptionCard.dart';
+import 'package:park_do_jao/View/Home/components/OptionCard.dart';
 
 class OptionList extends StatelessWidget {
   const OptionList({Key? key}) : super(key: key);

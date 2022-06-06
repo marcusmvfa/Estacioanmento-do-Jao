@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:park_do_jao/Home/HomePage.dart';
+import 'package:park_do_jao/View/Home/HomePage.dart';
 
 void main() {
   runApp(const MyApp());

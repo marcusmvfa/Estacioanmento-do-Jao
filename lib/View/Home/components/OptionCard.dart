@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:park_do_jao/Park/ParkView.dart';
+import 'package:park_do_jao/View/Park/ParkView.dart';
 
 class OptionCard extends StatelessWidget {
   const OptionCard({Key? key}) : super(key: key);

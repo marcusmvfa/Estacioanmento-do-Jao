@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:park_do_jao/Home/components/OptionList.dart';
-import 'package:park_do_jao/Home/components/TopNameWidget.dart';
+import 'package:park_do_jao/View/Home/components/OptionList.dart';
+import 'package:park_do_jao/View/Home/components/TopNameWidget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);

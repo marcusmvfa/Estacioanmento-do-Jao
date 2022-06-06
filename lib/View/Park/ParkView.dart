@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:park_do_jao/Park/components/ParkPageView.dart';
+import 'package:park_do_jao/View/Park/components/ParkPageView.dart';
 
 class ParkView extends StatelessWidget {
   const ParkView({Key? key}) : super(key: key);

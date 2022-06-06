@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:park_do_jao/Models/Lote.dart';
-import 'package:park_do_jao/Park/components/ParkingSpot.dart';
-import 'package:park_do_jao/Park/components/TopPageWidget.dart';
+import 'package:park_do_jao/View/Park/components/ParkingSpot.dart';
+import 'package:park_do_jao/View/Park/components/TopPageWidget.dart';
 import 'package:park_do_jao/ViewModel/ParkViewModel.dart';
 
 class ParkPageView extends StatelessWidget {
