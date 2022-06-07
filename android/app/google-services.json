@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "799334177235",
+    "project_id": "estacionamento-do-jao",
+    "storage_bucket": "estacionamento-do-jao.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799334177235:android:3b9631a1d414574d9d3726",
+        "android_client_info": {
+          "package_name": "com.example.park_do_jao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799334177235-cgshqcb8vi3fcml8qh4p8e0idmah6rjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBIb7RoeccC3xCNsCuQRfe1DEU2mmg9HU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799334177235-cgshqcb8vi3fcml8qh4p8e0idmah6rjd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "799334177235-543ica5tv2hcrorotq6d3bk0qcp501rg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.parkDoJao"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799334177235:android:86fbec80a0b08afb9d3726",
+        "android_client_info": {
+          "package_name": "com.marcus.estacionamento_jao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799334177235-cgshqcb8vi3fcml8qh4p8e0idmah6rjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBIb7RoeccC3xCNsCuQRfe1DEU2mmg9HU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799334177235-cgshqcb8vi3fcml8qh4p8e0idmah6rjd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "799334177235-543ica5tv2hcrorotq6d3bk0qcp501rg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.parkDoJao"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:park_do_jao/Models/Lote.dart';
+import 'package:park_do_jao/View/Park/components/ModalSheetFillSpot.dart';
+import 'package:park_do_jao/View/Park/components/SelectedSpot.dart';
 import 'package:park_do_jao/ViewModel/ParkViewModel.dart';
 
 class ParkingSpot extends StatelessWidget {
@@ -20,9 +22,15 @@ class ParkingSpot extends StatelessWidget {
         itemBuilder: (context, index) {
           var vaga = lote.spots[index];
           return InkWell(
-            onTap: () {
+            onTap: () async {
               vaga.vagaPreenchida.value = !vaga.vagaPreenchida.value;
+              viewModel.vagaSelecionada.value = vaga;
               viewModel.updateFreeSpots(lote);
+              await showModalBottomSheet(
+                  backgroundColor: Color(0xffF7F7F7),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  context: context,
+                  builder: (context) => ModalSheetFillSpot());
             },
             child: GridTile(
               child: Container(
@@ -35,16 +43,18 @@ class ParkingSpot extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                  child: Obx(
-                    () => Container(
-                      color: vaga.vagaPreenchida.value ? Colors.green.shade300 : Colors.transparent,
-                      child: Text(
-                        "${lote.id} ${vaga.id}",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
+                    child:
+                        // Obx(() =>
+                        SelectedSpot(lote: lote.name, vaga: vaga.number)
+                    // Container(
+                    //   color: vaga.vagaPreenchida.value ? Colors.green.shade300 : Colors.transparent,
+                    //   child: Text(
+                    //     "${lote.id} ${vaga.id}",
+                    //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    //   ),
+                    // ),
+                    // ),
                     ),
-                  ),
-                ),
               ),
             ),
           );

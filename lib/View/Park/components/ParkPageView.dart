@@ -7,9 +7,9 @@ import 'package:park_do_jao/ViewModel/ParkViewModel.dart';
 
 class ParkPageView extends StatelessWidget {
   ParkPageView({Key? key}) : super(key: key);
-  ParkViewModel viewModel = Get.put(ParkViewModel());
+  ParkViewModel viewModel = Get.find();
 
-  generateLote(index) {
+  gerarLote(index) {
     switch (index) {
       case 0:
         viewModel.lotes.add(Lote("A", index));
@@ -31,7 +31,6 @@ class ParkPageView extends StatelessWidget {
     return PageView.builder(
       itemCount: 4,
       itemBuilder: (context, index) {
-        generateLote(index);
         return Column(
           children: [
             TopPageWidget(viewModel.lotes[index]),
@@ -39,7 +38,7 @@ class ParkPageView extends StatelessWidget {
             Center(
               child: Obx(
                 () => Text(
-                    "Lote ${viewModel.vagaSelecionada.value.lot}, Vaga ${viewModel.vagaSelecionada.value.id}"),
+                    "Lote ${viewModel.vagaSelecionada.value.lot}, Vaga ${viewModel.vagaSelecionada.value.number}"),
               ),
             )
           ],

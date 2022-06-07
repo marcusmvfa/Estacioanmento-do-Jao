@@ -18,7 +18,7 @@ class TopPageWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 4, right: 4),
                 child: Text(
-                  lot.id,
+                  lot.name,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),

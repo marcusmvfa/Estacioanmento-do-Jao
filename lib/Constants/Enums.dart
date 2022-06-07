@@ -1,0 +1,4 @@
+enum TipoOperacao {
+  entrada,
+  saida,
+}
