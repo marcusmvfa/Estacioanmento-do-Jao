@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:park_do_jao/Models/Spot.dart';
 
@@ -7,8 +8,11 @@ class Lote {
   var index = 0;
   var freeSpots = 10.obs;
 
+  late Stream<QuerySnapshot> streamSpots;
+
   ///Vagas
   List<Spot> spots = [];
+
   Lote(this.name, this.index) {
     for (int i = 0; i < 10; i++) {
       spots.add(Spot(name, i));

@@ -4,16 +4,29 @@ import 'package:park_do_jao/Models/Lote.dart';
 import 'package:park_do_jao/ViewModel/ParkViewModel.dart';
 
 class SelectedSpot extends StatelessWidget {
-  SelectedSpot({Key? key, this.vaga, this.lote}) : super(key: key);
+  SelectedSpot({Key? key, this.vaga, this.lote, this.isFilled}) : super(key: key);
   ParkViewModel viewModel = Get.find();
   int? vaga;
   String? lote;
+  bool? isFilled;
+
+  getBackgroundColor() {
+    if (isFilled != null && isFilled == true) {
+      return Colors.red.shade400;
+    } else if (isFilled != null && isFilled == false) {
+      return Colors.green.shade400;
+    } else {
+      return Colors.grey.shade400;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     vaga = vaga ?? viewModel.vagaSelecionada.value.number;
     lote = lote ?? viewModel.vagaSelecionada.value.lot;
     return Card(
-      color: const Color(0xffD3DEDC),
+      // color: isFilled! ? Colors.amber : Color(0xffD3DEDC),
+      color: getBackgroundColor(),
       child: Padding(
         padding: EdgeInsets.all(8),
         child: Text(

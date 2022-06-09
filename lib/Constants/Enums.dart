@@ -1,4 +1,1 @@
-enum TipoOperacao {
-  entrada,
-  saida,
-}
+enum TipoOperacao { entrada, saida, relatorio }

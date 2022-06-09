@@ -5,13 +5,17 @@ import 'package:park_do_jao/Constants/Constants.dart';
 import 'package:park_do_jao/Database/FirestoreDb.dart';
 import 'package:park_do_jao/View/Home/HomePage.dart';
 import 'package:park_do_jao/ViewModel/ParkViewModel.dart';
+import 'package:park_do_jao/ViewModel/ReportViewModel.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  ).then((value) => Get.put(ParkViewModel()));
+  ).then((value) {
+    Get.put(ParkViewModel());
+    Get.put(ReportViewModel());
+  });
   runApp(const MyApp());
 }
 

@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:park_do_jao/Constants/Enums.dart';
 import 'package:park_do_jao/Database/FirestoreDb.dart';
+import 'package:park_do_jao/Models/EntradaSaida.dart';
 import 'package:park_do_jao/Models/Lote.dart';
 import 'package:park_do_jao/Models/Spot.dart';
 
@@ -13,6 +15,7 @@ class ParkViewModel extends GetxController {
   var operacaoSelecionada = TipoOperacao.entrada.obs;
   var vaga = 0.obs;
   var vagaSelecionada = Spot("", 0).obs;
+  late EntradaSaida entradaSaida;
 
   ParkViewModel() {
     getLotes();
@@ -21,25 +24,68 @@ class ParkViewModel extends GetxController {
 
   getLotes() async {
     FirestoreDb.getLotes().then((QuerySnapshot value) {
-      value.docs.forEach((element) {
+      value.docs.forEach((element) async {
         Lote l = Lote.fromJson(element.data() as Map<String, dynamic>);
         l.id = element.id;
-        l.spots = getSpots(l.id);
+        l.streamSpots = getStream(l.id);
+        // l.spots = await getSpots(l.id);
+        // l.spots.sort(((a, b) => a.number.compareTo(b.number)));
         lotes.add(l);
       });
       lotes.sort(((a, b) => a.name.compareTo(b.name)));
     });
   }
 
-  getSpots(String idLote) {
+  getSpots(String idLote) async {
     var spostAuxiliar = <Spot>[];
-    FirestoreDb.getSpotsByLote(idLote).then((QuerySnapshot value) {
+    await FirestoreDb.getSpotsByLote(idLote).then((QuerySnapshot value) {
       value.docs.forEach((element) {
         Spot s = Spot.fromJson(element.data() as Map<String, dynamic>);
         spostAuxiliar.add(s);
       });
     });
     return spostAuxiliar;
+  }
+
+  getStream(String idLote) {
+    return FirebaseFirestore.instance
+        .collection('spots')
+        .where('lote', isEqualTo: idLote)
+        .snapshots();
+  }
+
+  Future getEntradaSaida(String idLote, String idSpot) async {
+    await FirestoreDb.getEntradaSaida(idLote, idSpot).then((QuerySnapshot value) {
+      var aux = <EntradaSaida>[];
+      if (value.docs.isNotEmpty) {
+        value.docs.forEach((element) {
+          EntradaSaida es = EntradaSaida.fromJson(element.data() as Map<String, dynamic>);
+          aux.add(es);
+        });
+        aux.sort((a, b) => a.createdAt.compareTo(b.createdAt));
+        if (aux.last.out == null) {
+          entradaSaida = aux.last;
+
+          vagaSelecionada.value.horaEntrada = entradaSaida.entry;
+        } else {
+          entradaSaida = EntradaSaida("", "", "", "");
+        }
+      } else {
+        entradaSaida = EntradaSaida("", "", "", "");
+      }
+    });
+  }
+
+  getTotalTime(String entry, String out) {
+    var entryHour = int.parse(entry.substring(0, 2));
+    var entryMinute = int.parse(entry.substring(3, 5));
+
+    var outHour = int.parse(out.substring(0, 2));
+    var outMinute = int.parse(out.substring(3, 5));
+
+    var totalHours = outHour - entryHour;
+    var totalMinutes = (outMinute - entryMinute).abs();
+    return "$totalHours:$totalMinutes";
   }
 
   updateFreeSpots(Lote lote) {
@@ -51,8 +97,19 @@ class ParkViewModel extends GetxController {
   }
 
   saveSpot() async {
-    await FirestoreDb.registerEntradaSaida(vagaSelecionada.value, operacaoSelecionada.value);
-    // await FirestoreDb.updateSpotStatus(vagaSelecionada.value);
+    if (vagaSelecionada.value.vagaPreenchida.value == false) {
+      EntradaSaida entradaSaida = EntradaSaida(
+          vagaSelecionada.value.id,
+          vagaSelecionada.value.horaEntrada!,
+          vagaSelecionada.value.placa,
+          vagaSelecionada.value.lot);
+      await FirestoreDb.registerEntrada(entradaSaida, operacaoSelecionada.value);
+    } else {
+      entradaSaida.totalTime = getTotalTime(entradaSaida.entry, entradaSaida.out!);
+      await FirestoreDb.registerSaida(entradaSaida, operacaoSelecionada.value);
+    }
+    vagaSelecionada.value.vagaPreenchida.value = !vagaSelecionada.value.vagaPreenchida.value;
+    await FirestoreDb.updateSpotStatus(vagaSelecionada.value);
   }
 
   ///Lote A = 0
