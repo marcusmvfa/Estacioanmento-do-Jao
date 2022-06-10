@@ -17,6 +17,7 @@ class ListItem extends StatelessWidget {
           vaga: int.parse(entradaSaida.spotNumber),
           lote: entradaSaida.loteName,
         ),
+        // title: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         title: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
@@ -26,15 +27,22 @@ class ListItem extends StatelessWidget {
             ),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            Text("Entrada: ${entradaSaida.entry}"),
-            Text("Saída: ${entradaSaida.out ?? ""}")
+            Text(
+              "Entrada: ${entradaSaida.entry}",
+              style: TextStyle(fontSize: 14),
+            ),
+            Text(
+              "Saída: ${entradaSaida.out ?? ""}",
+              style: TextStyle(fontSize: 14),
+            )
           ])
         ]),
         trailing: Padding(
           padding: EdgeInsets.all(4),
           child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Text(
-              "Tempo total",
+              "Tempo total\n(Min.)",
+              textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text((entradaSaida.totalTime ?? "").toString()),

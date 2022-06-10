@@ -17,18 +17,12 @@ class ParkingSpot extends StatelessWidget {
   ParkViewModel viewModel = Get.find();
 
   fillSpot(Spot vaga, BuildContext context) async {
-    if (viewModel.operacaoSelecionada.value == TipoOperacao.entrada) {
-      if (vaga.vagaPreenchida.value == false) {
-        viewModel.vagaSelecionada.value = vaga;
-        showBottomSheet(context);
-      } else if (vaga.vagaPreenchida.value == true) {
-        showDialog(context: context, builder: (context) => SpotFilledDialog(TipoOperacao.entrada));
-      }
+    if (vaga.vagaPreenchida.value == false) {
+      viewModel.vagaSelecionada.value = vaga;
+      showBottomSheet(context);
     } else if (vaga.vagaPreenchida.value == true) {
       viewModel.vagaSelecionada.value = vaga;
       showBottomSheet(context);
-    } else {
-      showDialog(context: context, builder: (context) => SpotFilledDialog(TipoOperacao.entrada));
     }
   }
 
@@ -71,12 +65,11 @@ class ParkingSpot extends StatelessWidget {
                     child: Container(
                       // margin: EdgeInsets.only(left: 4),
                       decoration: BoxDecoration(
-                        color:
-                            vaga.vagaPreenchida.value ? Colors.red.shade200 : Colors.green.shade100,
+                        color: vaga.vagaPreenchida.value ? Color(0xbbFF858A) : Color(0xaa80ED99),
                         border: Border(
-                          top: BorderSide(color: Colors.grey),
-                          bottom: BorderSide(color: Colors.grey),
-                          left: index % 2 == 1 ? BorderSide(color: Colors.grey) : BorderSide.none,
+                          top: BorderSide(color: Colors.black),
+                          bottom: BorderSide(color: Colors.black),
+                          left: index % 2 == 1 ? BorderSide(color: Colors.black) : BorderSide.none,
                         ),
                       ),
                       child: Center(

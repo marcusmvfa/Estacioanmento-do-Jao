@@ -81,13 +81,12 @@ class ParkViewModel extends GetxController {
   getTotalTime(String entry, String out) {
     var entryHour = int.parse(entry.substring(0, 2));
     var entryMinute = int.parse(entry.substring(3, 5));
+    DateTime entra = DateTime(2022, 6, 1, entryHour, entryMinute);
 
     var outHour = int.parse(out.substring(0, 2));
     var outMinute = int.parse(out.substring(3, 5));
-
-    var totalHours = outHour - entryHour;
-    var totalMinutes = (outMinute - entryMinute).abs();
-    return "$totalHours:$totalMinutes";
+    DateTime sai = DateTime(2022, 6, 1, outHour, outMinute);
+    return sai.difference(entra).inMinutes.toString();
   }
 
   updateFreeSpots(Lote lote) {

@@ -30,11 +30,11 @@ class OptionCard extends StatelessWidget {
     if (tipoOperacao == TipoOperacao.entrada) {
       return const [
         Icon(
-          Icons.arrow_circle_up_outlined,
+          Icons.unfold_more_sharp,
           size: 32,
         ),
         Text(
-          "Entrada",
+          "Entrada/Saída",
           style: TextStyle(fontSize: 24),
         )
       ];

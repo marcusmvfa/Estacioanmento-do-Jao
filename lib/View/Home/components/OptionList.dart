@@ -11,7 +11,6 @@ class OptionList extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         OptionCard(TipoOperacao.entrada),
-        OptionCard(TipoOperacao.saida),
         OptionCard(TipoOperacao.relatorio),
       ]),
     );

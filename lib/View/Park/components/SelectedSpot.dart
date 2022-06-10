@@ -12,9 +12,9 @@ class SelectedSpot extends StatelessWidget {
 
   getBackgroundColor() {
     if (isFilled != null && isFilled == true) {
-      return Colors.red.shade400;
+      return Color(0xaaD9528B);
     } else if (isFilled != null && isFilled == false) {
-      return Colors.green.shade400;
+      return Color(0xaa14C38E);
     } else {
       return Color(0xff9BA3EB);
     }
