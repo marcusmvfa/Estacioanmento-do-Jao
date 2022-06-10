@@ -9,7 +9,7 @@ class TopNameWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       alignment: Alignment.centerLeft,
       child: const Text(
-        "Olá, João",
+        "Seja Bem-Vindo, João",
         style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
       ),
     );

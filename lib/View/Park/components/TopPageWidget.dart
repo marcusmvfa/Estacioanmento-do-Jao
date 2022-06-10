@@ -7,30 +7,27 @@ class TopPageWidget extends StatelessWidget {
   Lote lot;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: const Color(0xffF9F9F9),
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Wrap(
-            // mainAxisSize: MainAxisSize.min,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 4, right: 4),
-                child: Text(
-                  "Lote: ${lot.name}",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Wrap(
+          // mainAxisSize: MainAxisSize.min,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 4, right: 4),
+              child: Text(
+                "Lote: ${lot.name}",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              // Obx(
-              //   () =>
-              Text(
-                " Selecione uma vaga",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
-              ),
-              // ),
-            ]),
-      ),
+            ),
+            // Obx(
+            //   () =>
+            Text(
+              " Selecione uma vaga",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+            ),
+            // ),
+          ]),
     );
   }
 }

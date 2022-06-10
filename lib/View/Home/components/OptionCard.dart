@@ -70,6 +70,7 @@ class OptionCard extends StatelessWidget {
       child: InkWell(
         onTap: callback,
         child: Card(
+          color: Color(0xff9BA3EB),
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: getIcon()),

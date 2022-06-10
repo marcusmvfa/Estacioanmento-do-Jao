@@ -171,7 +171,6 @@ class _ModalSheetFillSpotState extends State<ModalSheetFillSpot> {
                           horaSaidaController.text = value.format(context);
                           viewModel.vagaSelecionada.value.horaSaida = value.format(context);
                           viewModel.entradaSaida.out = value.format(context);
-                          debugger();
                         }
                       });
                     }),

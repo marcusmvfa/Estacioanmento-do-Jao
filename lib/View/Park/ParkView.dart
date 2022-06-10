@@ -20,8 +20,14 @@ class ParkView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffDBDFFD),
       appBar: AppBar(
-        title: Text(getTipoOperacao()),
+        foregroundColor: Colors.black,
+        title: Text(
+          getTipoOperacao(),
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Color(0xff9BA3EB),
       ),
       body: Padding(
         padding: EdgeInsets.all(8),

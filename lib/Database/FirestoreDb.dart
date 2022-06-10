@@ -70,10 +70,12 @@ class FirestoreDb {
       await firebaseFirestore.collection('entrada-Saida').add({
         'createdAt': entradaSaida.createdAt,
         'spot': entradaSaida.spot,
+        'spotNumber': entradaSaida.spotNumber,
         'entry': entradaSaida.entry,
         'out': entradaSaida.out,
         'placa': entradaSaida.placa,
-        'lote': entradaSaida.lote
+        'lote': entradaSaida.lote,
+        'loteName': entradaSaida.loteName
       }).then((DocumentReference value) {
         firebaseFirestore.collection('entrada-Saida').doc(value.id).update({'id': value.id});
         entradaSaida.id = value.id;

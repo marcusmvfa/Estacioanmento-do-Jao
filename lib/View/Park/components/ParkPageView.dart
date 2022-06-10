@@ -36,12 +36,6 @@ class ParkPageView extends StatelessWidget {
           children: [
             TopPageWidget(viewModel.lotes[index]),
             ParkingSpot(viewModel.lotes[index]),
-            Center(
-              child: Obx(
-                () => Text(
-                    "Lote ${viewModel.vagaSelecionada.value.lot}, Vaga ${viewModel.vagaSelecionada.value.number}"),
-              ),
-            )
           ],
         );
       },

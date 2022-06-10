@@ -16,7 +16,7 @@ class SelectedSpot extends StatelessWidget {
     } else if (isFilled != null && isFilled == false) {
       return Colors.green.shade400;
     } else {
-      return Colors.grey.shade400;
+      return Color(0xff9BA3EB);
     }
   }
 
@@ -31,7 +31,7 @@ class SelectedSpot extends StatelessWidget {
         padding: EdgeInsets.all(8),
         child: Text(
           "$lote $vaga",
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
     );

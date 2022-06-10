@@ -15,6 +15,7 @@ class ParkViewModel extends GetxController {
   var operacaoSelecionada = TipoOperacao.entrada.obs;
   var vaga = 0.obs;
   var vagaSelecionada = Spot("", 0).obs;
+  var loteSelecionado = Lote("", 0);
   late EntradaSaida entradaSaida;
 
   ParkViewModel() {
@@ -55,6 +56,7 @@ class ParkViewModel extends GetxController {
   }
 
   Future getEntradaSaida(String idLote, String idSpot) async {
+    loteSelecionado = lotes.where((element) => element.id == idLote).first;
     await FirestoreDb.getEntradaSaida(idLote, idSpot).then((QuerySnapshot value) {
       var aux = <EntradaSaida>[];
       if (value.docs.isNotEmpty) {
@@ -68,10 +70,10 @@ class ParkViewModel extends GetxController {
 
           vagaSelecionada.value.horaEntrada = entradaSaida.entry;
         } else {
-          entradaSaida = EntradaSaida("", "", "", "");
+          entradaSaida = EntradaSaida("", "", "", "", "", "");
         }
       } else {
-        entradaSaida = EntradaSaida("", "", "", "");
+        entradaSaida = EntradaSaida("", "", "", "", "", "");
       }
     });
   }
@@ -102,7 +104,9 @@ class ParkViewModel extends GetxController {
           vagaSelecionada.value.id,
           vagaSelecionada.value.horaEntrada!,
           vagaSelecionada.value.placa,
-          vagaSelecionada.value.lot);
+          vagaSelecionada.value.lot,
+          loteSelecionado.name,
+          vagaSelecionada.value.number.toString());
       await FirestoreDb.registerEntrada(entradaSaida, operacaoSelecionada.value);
     } else {
       entradaSaida.totalTime = getTotalTime(entradaSaida.entry, entradaSaida.out!);
