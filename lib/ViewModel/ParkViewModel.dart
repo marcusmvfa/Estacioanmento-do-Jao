@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,9 +19,29 @@ class ParkViewModel extends GetxController {
   var loteSelecionado = Lote("", 0);
   late EntradaSaida entradaSaida;
 
-  ParkViewModel() {
-    getLotes();
-    // FirestoreDb.addLotes(lotes);
+  ParkViewModel({bool isTest = false}) {
+    if (isTest) {
+      getMock();
+    } else {
+      getLotes();
+    }
+  }
+
+  getMock() {
+    Lote a = Lote("A", 0);
+    a.spots.value = [
+      Spot("A", 0),
+      Spot("A", 1),
+      Spot("A", 2),
+      Spot("A", 3),
+      Spot("A", 4),
+      Spot("A", 5),
+      Spot("A", 6),
+      Spot("A", 7),
+      Spot("A", 8),
+      Spot("A", 9)
+    ];
+    lotes.add(a);
   }
 
   getLotes() async {
@@ -29,6 +50,11 @@ class ParkViewModel extends GetxController {
         Lote l = Lote.fromJson(element.data() as Map<String, dynamic>);
         l.id = element.id;
         l.streamSpots = getStream(l.id);
+        l.streamSpots.listen((event) {
+          l.spots.value.clear();
+          l.spots.value =
+              event.docs.map((e) => Spot.fromJson(e.data() as Map<String, dynamic>)).toList();
+        });
         // l.spots = await getSpots(l.id);
         // l.spots.sort(((a, b) => a.number.compareTo(b.number)));
         lotes.add(l);

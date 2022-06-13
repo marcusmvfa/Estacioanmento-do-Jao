@@ -11,7 +11,7 @@ class Lote {
   late Stream<QuerySnapshot> streamSpots;
 
   ///Vagas
-  List<Spot> spots = [];
+  var spots = <Spot>[].obs;
 
   Lote(this.name, this.index) {
     for (int i = 0; i < 10; i++) {
@@ -22,7 +22,7 @@ class Lote {
     id = json['id'];
     name = json['name'];
     if (json['spots'] != null) {
-      spots = <Spot>[];
+      spots.value = <Spot>[];
       json['spots'].forEach((v) {
         spots.add(Spot.fromJson(v));
       });

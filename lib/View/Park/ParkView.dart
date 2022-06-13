@@ -21,6 +21,7 @@ class ParkView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffDBDFFD),
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         foregroundColor: Colors.black,
         title: Text(
@@ -30,9 +31,10 @@ class ParkView extends StatelessWidget {
         backgroundColor: Color(0xff9BA3EB),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
-        child: ParkPageView(),
-      ),
+          padding: EdgeInsets.all(8),
+          child: SingleChildScrollView(
+            child: ParkPageView(),
+          )),
     );
   }
 }

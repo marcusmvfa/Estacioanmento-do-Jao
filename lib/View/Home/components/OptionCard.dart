@@ -67,13 +67,15 @@ class OptionCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       height: 100,
-      child: InkWell(
-        onTap: callback,
-        child: Card(
-          color: Color(0xff9BA3EB),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: getIcon()),
+      child: Material(
+        child: InkWell(
+          onTap: callback,
+          child: Card(
+            color: Color(0xff9BA3EB),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: getIcon()),
+            ),
           ),
         ),
       ),

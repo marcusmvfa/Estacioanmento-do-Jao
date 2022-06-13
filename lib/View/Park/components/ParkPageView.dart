@@ -29,16 +29,19 @@ class ParkPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      itemCount: 4,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            TopPageWidget(viewModel.lotes[index]),
-            ParkingSpot(viewModel.lotes[index]),
-          ],
-        );
-      },
+    return Container(
+      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+      child: PageView.builder(
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return ListView(
+            children: [
+              TopPageWidget(viewModel.lotes[index]),
+              ParkingSpot(viewModel.lotes[index]),
+            ],
+          );
+        },
+      ),
     );
   }
 }
